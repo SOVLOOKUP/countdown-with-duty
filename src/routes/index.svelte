@@ -37,7 +37,7 @@
 	onMount(async () => {
 		name = await getName();
 		// 每秒更新时间
-		setInterval(async () => {
+		setInterval(() => {
 			timeNow = Date.now();
 		}, 1000);
 
