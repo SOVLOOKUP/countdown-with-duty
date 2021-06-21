@@ -44,7 +44,7 @@
 		// 每日更新值班领导
 		setInterval(async () => {
 			name = await getName();
-		}, 86400000);
+		}, 600000);
 	});
 
 	$: [day, hour, min, sec] = Timer(target, timeNow);
