@@ -1,7 +1,7 @@
 <script>
 	import { onMount } from 'svelte';
 	import Timer from './timer';
-	const backendURL = 'http://127.0.0.1:3001';
+	const backendURL = 'http://10.33.81.9/newzhiban/zhiban.php';
 	const target = '2021/07/01 00:00:00';
 	const myText = '距建党100周年';
 	const weekDict = {
@@ -14,7 +14,10 @@
 		7: '日'
 	};
 	let timeNow = Date.now();
-	let name = '';
+	// 局领导
+	let name1 = '';
+	// 指挥室领导
+	let name2 = '';
 
 	// 补零
 	const zeroPlus = (/** @type {number} */ num) => (num > 9 ? num.toString() : '0' + num.toString());
@@ -23,9 +26,9 @@
 	async function getName() {
 		try {
 			const res = await fetch(backendURL);
-			const text = await res.json();
+			const text = await res.text();
 			if (res.ok) {
-				return text.name1;
+				return text.split('-');
 			} else {
 				throw new Error(text);
 			}
@@ -35,7 +38,7 @@
 	}
 
 	onMount(async () => {
-		name = await getName();
+		[name1,name2] = await getName();
 		// 每秒更新时间
 		setInterval(() => {
 			timeNow = Date.now();
@@ -43,18 +46,20 @@
 
 		// 每日更新值班领导
 		setInterval(async () => {
-			name = await getName();
+			[name1,name2] = await getName();
 		}, 600000);
 	});
 
 	$: [day, hour, min, sec] = Timer(target, timeNow);
 	$: date = new Date(timeNow);
-	$: name;
+	$: name1;
+	$: name2;
 </script>
 
 <main class="main">
 	<div class="name">
-		<span class="text-name">值班领导：{name}</span>
+		<span class="text-name">局领导：{name1}</span>
+		<span class="text-name">值班领导：{name2}</span>
 	</div>
 
 	<div class="title">
@@ -92,6 +97,7 @@
 
 	.name {
 		position: absolute;
+		flex-direction: column;
 		display: flex;
 		right: 0px;
 		bottom: 0px;
