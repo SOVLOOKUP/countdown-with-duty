@@ -57,26 +57,30 @@
 </script>
 
 <main class="main">
-	<div class="name">
-		<span class="text-name">局领导：{name1}</span>
-		<span class="text-name">值班领导：{name2}</span>
-	</div>
 
 	<div class="title">
-		<span class="text-title"
-			>今日{`${date.getFullYear()}年${date.getMonth() + 1}月${date.getDate()}日 星期${
-				weekDict[date.getDay()]
-			}`}</span
-		>
-		<span class="text-title"
-			>现在时间 {zeroPlus(date.getHours())}:{zeroPlus(date.getMinutes())}:{zeroPlus(
-				date.getSeconds()
-			)}</span
-		>
+		<div class="title2">
+			<span class="text-title">局领导：{name1}</span>
+			<span class="text-title">值班领导：{name2}</span>
+		</div>
+	
+		<div class="title2">
+			<span class="text-title"
+				>今日{`${date.getFullYear()}年${date.getMonth() + 1}月${date.getDate()}日 星期${
+					weekDict[date.getDay()]
+				}`}</span
+			>
+			<span class="text-title"
+				>现在时间 {zeroPlus(date.getHours())}:{zeroPlus(date.getMinutes())}:{zeroPlus(
+					date.getSeconds()
+				)}</span
+			>
+		</div>
 	</div>
+	
 	<div class="timer">
 		<span class="text-title">{myText}</span>
-		<span class="text-timer"> {day} 天 {hour} 时 {min} 分 {sec} 秒</span>
+		<span class="text-title"> {day} 天 {hour} 时 {min} 分 {sec} 秒</span>
 	</div>
 </main>
 
@@ -89,24 +93,22 @@
 	.title {
 		position: relative;
 		display: flex;
-		top: 6%;
-		flex-direction: column;
+		top: 8%;
+
 		justify-content: center;
 		align-items: center;
 	}
 
-	.name {
-		position: absolute;
+	.title2 {
 		flex-direction: column;
 		display: flex;
-		right: 0px;
-		bottom: 0px;
+		align-items: center;
 	}
 
 	.timer {
 		flex-direction: column;
 		position: relative;
-		bottom: -50%;
+		bottom: -55%;
 		display: flex;
 		align-items: center;
 		text-align: center;
@@ -117,27 +119,9 @@
 		font-family: sjbsjt;
 		font-style: normal;
 		font-weight: normal;
-		font-size: 8vh;
-		color: #fdec96;
-		text-shadow: 0px 5px 10px rgba(100, 53, 31, 0.7);
-	}
-
-	.text-timer {
-		font-family: sjbsjt;
-		font-style: normal;
-		font-weight: normal;
 		font-size: 7vh;
 		color: #fdec96;
-		text-shadow: 0px 5px 10px rgba(100, 53, 31, 0.7);
-	}
-
-	.text-name {
-		font-family: sjbsjt;
-		font-style: normal;
-		font-weight: normal;
-		font-size: 5vh;
-		color: #fdec96;
-		text-shadow: 0px 5px 10px rgba(100, 53, 31, 0.7);
+		text-shadow: 0px 5px 10px rgba(128, 67, 38, 0.9);
 	}
 
 	.main {
