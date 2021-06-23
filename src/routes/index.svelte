@@ -32,13 +32,13 @@
 			} else {
 				throw new Error(text);
 			}
-		} catch(e) {
-			return '未知'
+		} catch (e) {
+			return '未知';
 		}
 	}
 
 	onMount(async () => {
-		[name1,name2] = await getName();
+		[name1, name2] = await getName();
 		// 每秒更新时间
 		setInterval(() => {
 			timeNow = Date.now();
@@ -46,7 +46,7 @@
 
 		// 每日更新值班领导
 		setInterval(async () => {
-			[name1,name2] = await getName();
+			[name1, name2] = await getName();
 		}, 600000);
 	});
 
@@ -57,13 +57,11 @@
 </script>
 
 <main class="main">
-
 	<div class="title">
 		<div class="title2">
 			<span class="text-title">局领导：{name1}</span>
 			<span class="text-title">值班领导：{name2}</span>
 		</div>
-	
 		<div class="title2">
 			<span class="text-title"
 				>今日{`${date.getFullYear()}年${date.getMonth() + 1}月${date.getDate()}日 星期${
@@ -76,10 +74,12 @@
 				)}</span
 			>
 		</div>
+		<img class="logo" src="logo.png" alt="100周年" />
 	</div>
-	
+
 	<div class="timer">
 		<span class="text-title">{myText}</span>
+		<!-- svelte-ignore missing-declaration -->
 		<span class="text-title"> {day} 天 {hour} 时 {min} 分 {sec} 秒</span>
 	</div>
 </main>
@@ -90,11 +90,18 @@
 		src: url('/static/sjbsjt.ttf');
 	}
 
+	.logo {
+		display: flex;
+		position: fixed;
+		height: 50vh;
+		margin: 0 auto;
+		top: 23%;
+	}
+
 	.title {
 		position: relative;
 		display: flex;
 		top: 8%;
-
 		justify-content: center;
 		align-items: center;
 	}
@@ -131,6 +138,6 @@
 		bottom: 0;
 		left: 0;
 		background-size: 100% 100%;
-		background-image: url('/static/back.jpg');
+		background-image: url('/static/back.png');
 	}
 </style>
